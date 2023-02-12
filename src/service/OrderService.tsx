@@ -1,11 +1,11 @@
 import {api} from "./api";
-import {TypeOrder} from "../utils/@Types";
+import {Order} from "../utils/@Types";
 
-export const getAllOrders = async () =>{
-    return api.get('/order/all/')
+export async function getAllOrders  () {
+    return await api.get('/order/all/')
 
 }
 
-export function registerNewOrder(order: TypeOrder){
+export function registerNewOrder(order: Order){
     return api.post(`/order`, order)
 }

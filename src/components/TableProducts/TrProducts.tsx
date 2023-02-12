@@ -1,11 +1,11 @@
 import React from 'react';
-import { TypeProtucts } from '../utils/@Types';
+import { Products } from '../../utils/@Types';
 import { TableItems } from './TableItems';
-import {formatCurrency} from "../utils/converter";
+import {formatCurrency} from "../../utils/converter";
 // import { bgColor } from "../utils/Colors.tsx";
 
 interface props {
-    product: TypeProtucts,
+    product: Products,
     index: number
 }
 export function TrProducts({ product, index }: props) {

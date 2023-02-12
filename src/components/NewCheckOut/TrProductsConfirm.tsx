@@ -1,12 +1,12 @@
 import React, {ChangeEvent, SelectHTMLAttributes, useEffect} from 'react';
-import {TypeProtucts} from "../../utils/@Types";
-import {TableItems} from "../TableItems";
+import {Products} from "../../utils/@Types";
+import {TableItems} from "../TableProducts/TableItems";
 import {formatCurrency} from "../../utils/converter";
 
 
 
 interface props {
-    product: TypeProtucts,
+    product: Products,
     index: number,
     onChangeSelect: (index: number, number: number)=>void
 }

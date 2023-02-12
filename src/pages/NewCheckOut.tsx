@@ -1,22 +1,22 @@
 import React, { FormEvent, useCallback, useEffect, useState } from 'react';
 import { getAllProducts } from "../service/ProductService";
 import { PickItens } from "../components/PickerList/PickItens";
-import { TypeOrder, TypeProtucts } from "../utils/@Types";
+import { Order, Products } from "../utils/@Types";
 import { Input } from "../components/Input";
 import { ConfirmOrder } from "../components/NewCheckOut/ConfirmOrder";
 import { ButtonArrow } from '../components/Buttons/ButtonArrow';
 
 export function NewCheckOut() {
     const [open, setOpen] = useState<boolean>(false);
-    const [listProductsSelected, setListProductsSelected] = useState<TypeProtucts[]>([]);
-    const [selectToAdd, setSelectToAdd] = useState<TypeProtucts>({} as TypeProtucts);
-    const [selectToRemove, setSelectToRemove] = useState<TypeProtucts>({} as TypeProtucts);
-    const [listProducts, setListProducts] = useState<TypeProtucts[]>([]);
+    const [listProductsSelected, setListProductsSelected] = useState<Products[]>([]);
+    const [selectToAdd, setSelectToAdd] = useState<Products>({} as Products);
+    const [selectToRemove, setSelectToRemove] = useState<Products>({} as Products);
+    const [listProducts, setListProducts] = useState<Products[]>([]);
     const [search, setSearch] = useState({
         stock: '',
         selected: ''
     });
-    const [formData, setFormData] = useState<TypeOrder>({} as TypeOrder);
+    const [formData, setFormData] = useState<Order>({} as Order);
 
 
     const header = (
@@ -32,7 +32,7 @@ export function NewCheckOut() {
 
     useEffect(() => {
         getAllProducts().then(response => {
-            const data: TypeProtucts[] = response.data
+            const data: Products[] = response.data
             setListProducts(data)
         })
 
@@ -42,7 +42,7 @@ export function NewCheckOut() {
         if (selectToAdd.id) {
             setListProductsSelected(prevState => [...prevState, selectToAdd]);
             setListProducts(listProducts.filter(item => item.id !== selectToAdd.id && item));
-            setSelectToAdd({} as TypeProtucts);
+            setSelectToAdd({} as Products);
         }
     }
 
@@ -50,7 +50,7 @@ export function NewCheckOut() {
         if (selectToRemove.id) {
             setListProducts(prevState => [...prevState, selectToRemove]);
             setListProductsSelected(listProductsSelected.filter(item => item.id !== selectToRemove.id && item));
-            setSelectToRemove({} as TypeProtucts);
+            setSelectToRemove({} as Products);
         }
     }
 

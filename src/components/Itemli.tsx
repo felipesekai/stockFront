@@ -1,12 +1,12 @@
 import {LiHTMLAttributes, useEffect, useState} from "react";
 import {bgColor} from "../utils/Colors";
-import {TypeProtucts} from "../utils/@Types";
+import {Products} from "../utils/@Types";
 import {formatCurrency} from "../utils/converter";
 
 interface props extends LiHTMLAttributes<HTMLLIElement> {
-    item: TypeProtucts;
+    item: Products;
     itemSelectId?: string
-    onSelectChange: (item: TypeProtucts)=>void
+    onSelectChange: (item: Products)=>void
 }
 export const Itemli = ({item, onSelectChange, itemSelectId, ...rest}: props)=>{
     const [select, setSelect] = useState(false)

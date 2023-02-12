@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { ModalNewProducts } from './ModalNewProducts';
-import { TrProducts } from './TrProducts';
+import { TrProducts } from './TableProducts/TrProducts';
 import 'primeicons/primeicons.css';
-import { TypeProtucts } from '../utils/@Types';
+import { Products } from '../utils/@Types';
 import '../css/table.css'
 import { getAllProducts } from "../service/ProductService";
 import { Button } from './Button';
 
 export function Stock() {
     const [open, setOpen] = useState<boolean>(false);
-    const [listProducts, setListProducts] = useState<TypeProtucts[]>([]);
+    const [listProducts, setListProducts] = useState<Products[]>([]);
 
     const header = (
         <div className="flex items-center bg-bgPrimary w-full rounded font-bold mt-1 my-3 px-2 font-semibold text-2xl">
@@ -23,7 +23,7 @@ export function Stock() {
 
     useEffect(() => {
         getAllProducts().then(async response => {
-            const data: TypeProtucts[] = response.data
+            const data: Products[] = response.data
             setListProducts(data)
         })
     }, [])

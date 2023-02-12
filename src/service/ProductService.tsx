@@ -1,11 +1,11 @@
 import {api} from "./api";
-import {TypeProtucts} from "../utils/@Types";
+import {Products} from "../utils/@Types";
 
 export const getAllProducts = async () =>{
     return api.get('/product/all/')
 
 }
 
-export function registerProduct(product: TypeProtucts){
+export function registerProduct(product: Products){
     return api.post(`/product`, product)
 }

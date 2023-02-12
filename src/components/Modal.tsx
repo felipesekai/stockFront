@@ -1,5 +1,5 @@
-import { Dialog, DialogProps } from 'primereact/dialog';
-import React, { useState } from 'react';
+import {Dialog} from 'primereact/dialog';
+import React from 'react';
 import 'primeicons/primeicons.css';
 
 
@@ -10,7 +10,7 @@ interface props  {
     close: () => void
 }
 
-export function DialogEdit({ children, title, open, close }: props) {
+export function Modal({ children, title, open, close }: props) {
 
     return (
         <Dialog className='bg-[#ffffff] dark:bg-bgColor rounded-lg px-4 shadow-md py-6

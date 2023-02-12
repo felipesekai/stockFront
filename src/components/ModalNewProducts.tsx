@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from 'react';
-import { DialogEdit } from './DialogEdit';
+import { Modal } from './Modal';
 import { get } from '../database/Local';
 import { api } from '../service/api';
-import { TypeProtucts } from '../utils/@Types';
+import { Products } from '../utils/@Types';
 import { KEYLISTPRODUCTS } from '../utils/Keys';
 import { InputText } from 'primereact/inputtext';
 
@@ -18,7 +18,7 @@ interface props {
 
 export function ModalNewProducts({ open, close }: props) {
 
-    const [formData, setFormData] = useState<TypeProtucts>({} as TypeProtucts);
+    const [formData, setFormData] = useState<Products>({} as Products);
 
     const onInputChange = useCallback((event: React.FormEvent<HTMLInputElement>) => {
         const targetInput = event.currentTarget
@@ -42,7 +42,7 @@ export function ModalNewProducts({ open, close }: props) {
     }, [formData])
 
     return (
-        <DialogEdit title='Cadastrar novo Produto' open={open} close={close}>
+        <Modal title='Cadastrar novo Produto' open={open} close={close}>
 
             <form className='flex flex-col gap-2' onSubmit={handleSubmit}>
                 <div className='flex flex-col'>
@@ -80,6 +80,6 @@ export function ModalNewProducts({ open, close }: props) {
             </form>
 
 
-        </DialogEdit>
+        </Modal>
     );
 }

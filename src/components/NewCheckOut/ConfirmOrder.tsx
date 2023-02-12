@@ -1,17 +1,17 @@
-import {DialogEdit} from "../DialogEdit";
+import {Modal} from "../Modal";
 import React, {useEffect, useState} from "react";
-import {TypeOrder, TypeProtucts} from "../../utils/@Types";
+import {Order, Products} from "../../utils/@Types";
 import {TrProductsConfirm} from "./TrProductsConfirm";
 import {Button} from "../Button";
 import {registerNewOrder} from "../../service/OrderService";
 
 interface props  {
-    order: TypeOrder
+    order: Order
     open: boolean,
     close: () => void
 }
 export const ConfirmOrder = ({order, open, close}:props)=>{
-    const [listProducts, setListProducts] = useState<TypeProtucts[]>([]);
+    const [listProducts, setListProducts] = useState<Products[]>([]);
     const [total, setTotal] = useState<number>(0);
 
 
@@ -53,7 +53,7 @@ export const ConfirmOrder = ({order, open, close}:props)=>{
     }
 
     function handleConfirmOrder(){
-        const newOrder: TypeOrder = {
+        const newOrder: Order = {
             name: order.name ? order.name : '',
             date: order.date? order.date : undefined,
             products: listProducts,
@@ -70,7 +70,7 @@ export const ConfirmOrder = ({order, open, close}:props)=>{
     }
 
     return (
-            <DialogEdit open={open} close={close} title={"Confirmar Pedido"}>
+            <Modal open={open} close={close} title={"Confirmar Pedido"}>
                 <div className={'flex flex-col '}>
                     <div className={'flex gap-2'}>
                         <h4 className={'flex-1 text-md'}>Nome: {order.name}</h4>
@@ -102,6 +102,6 @@ export const ConfirmOrder = ({order, open, close}:props)=>{
                     </h4>
                     <Button onClick={handleConfirmOrder} title={"Confirmar"}/>
                 </div>
-            </DialogEdit>
+            </Modal>
     );
 }

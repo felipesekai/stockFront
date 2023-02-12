@@ -1,4 +1,4 @@
-import { TypeProtucts } from '../utils/@Types'
+import { Products } from '../utils/@Types'
 export function save(key: string, data: object) {
     return localStorage.setItem(key, JSON.stringify(data))
 }

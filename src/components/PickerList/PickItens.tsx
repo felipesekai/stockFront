@@ -1,18 +1,18 @@
 import {Input} from "../Input";
 import {Itemli} from "../Itemli";
 import React, {useEffect} from "react";
-import {TypeProtucts} from "../../utils/@Types";
+import {Products} from "../../utils/@Types";
 
 
 interface props {
-    list: TypeProtucts[],
-    itemSelected: TypeProtucts,
-    setItemSelect: (item: TypeProtucts)=>void,
+    list: Products[],
+    itemSelected: Products,
+    setItemSelect: (item: Products)=>void,
     search: (item: string)=>void,
 
 }
 export const PickItens= ({list, search, itemSelected, setItemSelect}: props)=>{
-    const handleSelect = (item: TypeProtucts)=>{
+    const handleSelect = (item: Products)=>{
         setItemSelect(item)
 
         }
