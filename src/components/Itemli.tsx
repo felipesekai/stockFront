@@ -1,0 +1,54 @@
+import {LiHTMLAttributes, useEffect, useState} from "react";
+import {bgColor} from "../utils/Colors";
+import {TypeProtucts} from "../utils/@Types";
+import {formatCurrency} from "../utils/converter";
+
+interface props extends LiHTMLAttributes<HTMLLIElement> {
+    item: TypeProtucts;
+    itemSelectId?: string
+    onSelectChange: (item: TypeProtucts)=>void
+}
+export const Itemli = ({item, onSelectChange, itemSelectId, ...rest}: props)=>{
+    const [select, setSelect] = useState(false)
+    const handleSelect = ()=>{
+        onSelectChange(item)
+    }
+
+    useEffect(()=>{
+        if(itemSelectId === item.id){
+            setSelect(true)
+        }else{
+            setSelect(false)
+
+        }
+    },[itemSelectId])
+
+    return (
+        <li
+            {...rest}
+        onClick={handleSelect}
+        className="
+        py-2
+        flex
+        border-b-gray-light
+        rounded
+        bg-bgPrimaryLight
+        hover:border-bgPrimary
+        hover:border-2
+        px-2
+        justify-between
+        "
+        style={{backgroundColor: select? bgColor.bgPrimary : '', borderWidth: select ? '1px': '' }}
+        >
+            <div className={'flex-[2]'}>
+            {item.name}
+            </div>
+            <div className={'flex-1'}>
+            {"Qtd: "+item.quantity}
+            </div>
+            <div >
+            {"Preço: "+ formatCurrency(Number(item.price))}
+            </div>
+        </li>
+    );
+}
