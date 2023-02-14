@@ -6,17 +6,27 @@ import { Products } from '../utils/@Types';
 import '../css/table.css'
 import { getAllProducts } from "../service/ProductService";
 import { Button } from './Button';
+import {BHeaderPage} from "./BHeaderPage";
+import {ButtonArrowBack} from "./Buttons/ButtonArrowBack";
+import {useNavigate} from "react-router-dom";
 
 export function Stock() {
     const [open, setOpen] = useState<boolean>(false);
     const [listProducts, setListProducts] = useState<Products[]>([]);
 
+    const navigate = useNavigate();
+
+    function goTo(){
+        navigate("/")
+    }
+
     const header = (
-        <div className="flex items-center bg-bgPrimary w-full rounded font-bold mt-1 my-3 px-2 font-semibold text-2xl">
+        <BHeaderPage>
+            <ButtonArrowBack  onClick={goTo}/>
             Produtos
             <Button onClick={() => setOpen(!open)} title={"Cadastrar Produto"}><i className="pi pi-plus"></i></Button>
 
-        </div>
+        </BHeaderPage>
     );
     const footer = `In total there are ${listProducts ? listProducts.length : 0} products.`;
 
@@ -28,12 +38,12 @@ export function Stock() {
         })
     }, [])
     return (
-        <div className="m-auto mt-2 w-[70%]">
+        <div className="m-auto mt-2 ">
 
             <ModalNewProducts open={open} close={() => setOpen(false)} />
             {header}
             <table className="table-auto w-full">
-                <thead className='bg-bgPrimary w-full rounded font-bold mt-1 my-3'>
+                <thead className='bg-bgPrimary w-full rounded font-bold mt-1 my-3 text-white'>
                     <tr className='rounded'>
                         <th>Código</th>
                         <th>Nome</th>

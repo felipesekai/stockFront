@@ -9,7 +9,8 @@ export function formatarMoeda(value: string) {
         valor = valor.replace(/([0-9]{3}),([0-9]{2}$)/g, ".$1,$2");
     }
 
-    return valor == 'NaN' ? value = '' : valor;
+
+    return valor === 'NaN' ? value = '' : valor;
 
 }
 

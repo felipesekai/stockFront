@@ -1,8 +1,8 @@
 import React from 'react';
-import { Products } from '../../utils/@Types';
-import { TableItems } from './TableItems';
+import {Products} from '../../utils/@Types';
+import {TableItems} from './TableItems';
 import {formatCurrency} from "../../utils/converter";
-// import { bgColor } from "../utils/Colors.tsx";
+import {AlterColorRows} from "../../utils/AlterColorRows";
 
 interface props {
     product: Products,
@@ -15,7 +15,7 @@ export function TrProducts({ product, index }: props) {
         window.alert("pressionou")
     }
     return (
-        <tr className='border-1 dark:border-bgPrimary' style={{ backgroundColor: index % 2 > 0 ? '#808080' : '#A9A9A9' }}
+        <tr onDoubleClick={handlePressCard} className='border-1 dark:border-bgPrimary' style={AlterColorRows(index)}
         >
             <td><TableItems title={product.id} />
             </td>

@@ -11,7 +11,12 @@ export function CardHome({ iconName, text, ...rest }: props) {
         <button
             id="card-home"
             {...rest}
-            className='bg-bgPrimary flex flex-col justify-center items-center py-7 px-3 shadow-md'
+            className='bg-bgPrimary
+             flex flex-col justify-center
+              items-center w-[270px] h-[150px]
+               shadow-md
+               text-white
+               '
         >
 
             <i id='iconCard' className={iconName}

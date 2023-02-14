@@ -1,5 +1,5 @@
 import React from "react";
-import {Order, OrderRequests} from "../../utils/@Types";
+import { OrderRequests} from "../../utils/@Types";
 import {CardOrder} from "./CardOrder";
 
 interface TableOrderProps {
@@ -8,7 +8,7 @@ interface TableOrderProps {
 export const TableOrder = ({list}: TableOrderProps)=>{
     return(
         <table className="table-auto w-full">
-            <thead className='bg-bgPrimary w-full rounded font-bold mt-1 my-3'>
+            <thead className='bg-bgPrimary w-full rounded font-bold mt-1 my-3 text-white'>
             <tr className='rounded'>
                 <th>Código</th>
                 <th>Nome</th>

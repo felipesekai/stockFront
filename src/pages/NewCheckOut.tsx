@@ -1,10 +1,13 @@
-import React, { FormEvent, useCallback, useEffect, useState } from 'react';
-import { getAllProducts } from "../service/ProductService";
-import { PickItens } from "../components/PickerList/PickItens";
-import { Order, Products } from "../utils/@Types";
-import { Input } from "../components/Input";
-import { ConfirmOrder } from "../components/NewCheckOut/ConfirmOrder";
-import { ButtonArrow } from '../components/Buttons/ButtonArrow';
+import React, {FormEvent, useEffect, useState} from 'react';
+import {getAllProducts} from "../service/ProductService";
+import {PickItens} from "../components/PickerList/PickItens";
+import {Order, Products} from "../utils/@Types";
+import {Input} from "../components/Input";
+import {ConfirmOrder} from "../components/NewCheckOut/ConfirmOrder";
+import {ButtonArrow} from '../components/Buttons/ButtonArrow';
+import {useNavigate} from "react-router-dom";
+import {BHeaderPage} from "../components/BHeaderPage";
+import {ButtonArrowBack} from "../components/Buttons/ButtonArrowBack";
 
 export function NewCheckOut() {
     const [open, setOpen] = useState<boolean>(false);
@@ -17,14 +20,20 @@ export function NewCheckOut() {
         selected: ''
     });
     const [formData, setFormData] = useState<Order>({} as Order);
+    const navigate = useNavigate();
 
+    function goTo(){
+        navigate("/")
+    }
 
     const header = (
-        <div
-            className="flex items-center bg-bgPrimary w-full rounded font-bold py-5 px-4 mt-1 my-3  font-semibold text-xl">
+        <BHeaderPage>
+            <ButtonArrowBack  onClick={goTo}/>
             Registar Saída
-        </div>
+        </BHeaderPage>
     );
+
+
 
     const listedFilter = listProducts.filter(product => product.name.toUpperCase().includes(search.stock.toUpperCase()))
     const selectedListedFilter = listProductsSelected.filter(product => product.name.toUpperCase().includes(search.selected.toUpperCase()))
@@ -119,7 +128,7 @@ export function NewCheckOut() {
             <button type={'submit'}
 
                 onClick={handleSubmitOrder}
-                className={'bg-bgPrimary my-5 ml-auto mr-10 px-14 rounded shadow font-bold'}>
+                className={'bg-bgPrimary my-5 ml-auto mr-10 px-14 py-2 rounded shadow font-bold text-white'}>
                 Confirmar
             </button>
         </div>

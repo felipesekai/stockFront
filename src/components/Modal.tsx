@@ -13,7 +13,7 @@ interface props  {
 export function Modal({ children, title, open, close }: props) {
 
     return (
-        <Dialog className='bg-[#ffffff] dark:bg-bgColor rounded-lg px-4 shadow-md py-6
+        <Dialog className='bg-[#ffffff] rounded-lg px-4 shadow-md py-6
         w-[50vh]
         flex
         flex-col

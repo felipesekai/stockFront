@@ -14,6 +14,7 @@ export const Button = ({ title, children, ...rest }: ButtonProps) => {
                     gap-2
                     justify-center
                     items-center
+                    text-white
                     my-5
                     ml-auto 
                     mx-4

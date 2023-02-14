@@ -6,7 +6,7 @@ function App() {
 
 
   return (
-    <div className="h-[100vh] w-full ">
+    <div className="h-[100vh] w-full max-w-[1260px] ">
       <Routes />
     </div>
   )

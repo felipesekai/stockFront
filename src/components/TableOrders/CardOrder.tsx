@@ -1,7 +1,8 @@
 import React from 'react';
-import {Order, OrderRequests} from '../../utils/@Types';
+import {OrderRequests} from '../../utils/@Types';
 import {TableItems} from './TableItems';
 import {formatCurrency} from "../../utils/converter";
+import {AlterColorRows} from "../../utils/AlterColorRows";
 
 // import { bgColor } from "../utils/Colors.tsx";
 
@@ -11,12 +12,8 @@ interface props {
 }
 export function CardOrder({ order, index }: props) {
 
-
-    function handlePressCard() {
-        window.alert("pressionou")
-    }
     return (
-        <tr className='border-1 dark:border-bgPrimary' style={{ backgroundColor: index % 2 > 0 ? '#808080' : '#A9A9A9' }}
+        <tr className='border-1 dark:border-bgPrimary' style={AlterColorRows(index)}
         >
             <td><TableItems title={order.id} />
             </td>

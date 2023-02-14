@@ -4,8 +4,11 @@ module.exports = {
   theme: {
     extend: {},
     colors: {
-      bgPrimary: '#ffbd68',
-      bgPrimaryLight: 'rgba(255,189,104,0.34)',
+      // bgPrimary: '#ffbd68',
+      bgPrimary: '#009933',
+      bgSecondary: '#ADD8E6',
+      // bgPrimaryLight: 'rgba(255,189,104,0.34)',
+      bgPrimaryLight: '#ADD8E6',
       bgColor: '#242424',
       borderColor: '#473925',
       // 'blue': '#1fb6ff',
@@ -17,6 +20,7 @@ module.exports = {
       'gray-dark': '#273444',
       'gray': '#8492a6',
       'gray-light': '#d3dce6',
+      'white': '#fff',
     },
   },
   plugins: [],

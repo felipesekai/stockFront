@@ -10,7 +10,8 @@ export function Home() {
     }
     return (
         <div className='flex flex-1, h-[100hv] justify-center items-center pt-10'>
-            <div className='grid grid-cols-4 gap-2' >
+            {/*<div className='grid grid-cols-4 gap-2 h-[200px] items-center px-2' >*/}
+            <div className='flex gap-2 p-2 h-[200px] items-center' >
                 <CardHome
                     onClick={() => to('/newcheckout')}
                     iconName='pi pi-box' text='Registrar Saida' />
@@ -22,6 +23,7 @@ export function Home() {
                     iconName='pi pi-box' text='Ver Pedidos' />
 
             </div>
+            {/*</div>*/}
         </div>
     );
 }

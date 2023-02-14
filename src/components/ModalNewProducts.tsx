@@ -1,16 +1,13 @@
-import React, { useCallback, useState } from 'react';
-import { Modal } from './Modal';
-import { get } from '../database/Local';
-import { api } from '../service/api';
-import { Products } from '../utils/@Types';
-import { KEYLISTPRODUCTS } from '../utils/Keys';
-import { InputText } from 'primereact/inputtext';
-
-import { InputNumber } from 'primereact/inputnumber';
+import React, {useCallback, useState} from 'react';
+import {Modal} from './Modal';
+import {Products} from '../utils/@Types';
 
 
-import { formatarMoeda } from '../utils/converter';
+import {formatarMoeda} from '../utils/converter';
 import {registerProduct} from "../service/ProductService";
+import {Input} from "./Input";
+import {Button} from "./Button";
+
 interface props {
     open: boolean;
     close: () => void
@@ -47,14 +44,14 @@ export function ModalNewProducts({ open, close }: props) {
             <form className='flex flex-col gap-2' onSubmit={handleSubmit}>
                 <div className='flex flex-col'>
                     <label>Nome</label>
-                    <input name='name' required
+                    <Input name='name' required
                         value={formData.name}
                         onChange={onInputChange}
                         type='text' className='border-2 rounded border-bgPrimary h-10' />
                 </div>
                 <div className='flex flex-col'>
                     <label className='capitalize'>Descrição</label>
-                    <InputText
+                    <Input
                         value={formData.description}
                         name='description'
                         onChange={onInputChange}
@@ -62,13 +59,13 @@ export function ModalNewProducts({ open, close }: props) {
                 </div>
                 <div className='flex flex-col'>
                     <label className='capitalize'>quantidade</label>
-                    <input
+                    <Input
                         value={formData.quantity}
                         name='quantity' onChange={onInputChange} required type='number' className='border-2 rounded border-bgPrimary h-10' />
                 </div>
                 <div className='flex flex-col'>
                     <label className='capitalize'>Valor <span className={'bg-red'}>*</span></label>
-                    <input
+                    <Input
                         onChange={(e) => setFormData({ ...formData, price: formatarMoeda(e.target.value) })}
                         value={formData.price}
                         required
@@ -76,7 +73,7 @@ export function ModalNewProducts({ open, close }: props) {
                         step="0.01"
                         className='border-2 rounded border-bgPrimary h-10' />
                 </div>
-                <input className='bg-bgPrimary rounded px-7 py-3 my-2 ml-auto font-bold ' type='submit' value={'Cadastrar'} />
+                <Button type='submit' title={'Cadastrar'} />
             </form>
 
 
