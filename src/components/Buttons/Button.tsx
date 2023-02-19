@@ -16,7 +16,7 @@ export const Button = ({ title, children, ...rest }: ButtonProps) => {
                     justify-center
                     items-center
                     text-white
-                    my-5
+                    my-2
                     ml-auto 
                     mx-4
                     px-5

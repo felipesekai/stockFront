@@ -17,6 +17,7 @@ export type Order = {
     products: Products[];
     date?: string;
     hour?: number;
+    paymentMethod?: string| null
 }
 export type OrderRequests = {
     id?: string;
@@ -25,4 +26,10 @@ export type OrderRequests = {
     product: any[];
     date?: string;
     hour?: number;
+    paymentMethod?: string| null
 }
+
+// export type Paymments = {
+//     id: number;
+//     name: string;
+// }

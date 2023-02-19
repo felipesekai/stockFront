@@ -1,18 +1,22 @@
-import { Modal } from "../Modal";
-import React, { useEffect, useState } from "react";
-import { Order, Products } from "../../utils/@Types";
-import { TrProductsConfirm } from "./TrProductsConfirm";
-import { Button } from "../Buttons/Button";
-import { registerNewOrder } from "../../service/OrderService";
+import {Modal} from "../Modal";
+import React, {useCallback, useEffect, useState} from "react";
+import {Order, Products} from "../../utils/@Types";
+import {TrProductsConfirm} from "./TrProductsConfirm";
+import {Button} from "../Buttons/Button";
+import {registerNewOrder} from "../../service/OrderService";
+import {formatCurrency} from "../../utils/converter";
+import {Select} from "../Select";
 
 interface props {
-    order: Order
+    order: Order,
     open: boolean,
     close: () => void
 }
-export const ConfirmOrder = ({ order, open, close }: props) => {
+
+export const ConfirmOrder = ({order, open, close}: props) => {
     const [listProducts, setListProducts] = useState<Products[]>([]);
     const [total, setTotal] = useState<number>(0);
+    const [paymentMethod, setPaymentMethod] = useState<string | null>(null);
 
 
     useEffect(() => {
@@ -57,14 +61,15 @@ export const ConfirmOrder = ({ order, open, close }: props) => {
             name: order.name ? order.name : '',
             date: order.date ? order.date : undefined,
             products: listProducts,
-            total: total
+            total: total,
+            paymentMethod: paymentMethod
         }
 
         registerNewOrder(newOrder).then(r => {
-            if(r.data.title){
+            if (r.data.title) {
                 alert(r.data.message);
 
-            }else{
+            } else {
                 alert("Registro Cadastrado Com Sucesso!");
                 window.location.reload()
             }
@@ -76,6 +81,10 @@ export const ConfirmOrder = ({ order, open, close }: props) => {
         })
     }
 
+    const handleSelectPaymentsMethod = useCallback((e : React.ChangeEvent<HTMLSelectElement>)=>{
+        setPaymentMethod(e.target.value)
+    },[setPaymentMethod])
+
     return (
         <Modal open={open} close={close} title={"Confirmar Pedido"}>
             <div className={'flex flex-col '}>
@@ -86,28 +95,34 @@ export const ConfirmOrder = ({ order, open, close }: props) => {
                 </div>
 
                 <table className="table-auto w-full">
-                    <thead className='bg-bgPrimary w-full rounded font-bold mt-1 my-3'>
-                        <tr className='rounded'>
-                            <th>Código</th>
-                            <th>Nome</th>
-                            <th>Qtd</th>
-                            <th>Preço</th>
-                        </tr>
+                    <thead className='bg-bgPrimary w-full rounded font-bold mt-1 my-3 text-white'>
+                    <tr className='rounded'>
+                        <th>Código</th>
+                        <th>Nome</th>
+                        <th>Qtd</th>
+                        <th>Preço</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        {listProducts.map((item, index) => <TrProductsConfirm
-                            key={index}
-                            product={item}
-                            index={index}
-                            onChangeSelect={(index, qtd) => onChangeSelect(index, qtd)}
-                        />)}
+                    {listProducts.map((item, index) => <TrProductsConfirm
+                        key={index}
+                        product={item}
+                        index={index}
+                        onChangeSelect={(index, qtd) => onChangeSelect(index, qtd)}
+                    />)}
 
                     </tbody>
                 </table>
+
+                <div className="flex justify-center mt-2">
+                    <Select onChange={handleSelectPaymentsMethod}></Select>
+
+
+                </div>
                 <h4 className={'flex text-md w-full justify-end px-4 py-2'}>
-                    {"Total: " + total}
+                    {"Total: " + formatCurrency(total)}
                 </h4>
-                <Button onClick={handleConfirmOrder} title={"Confirmar"} />
+                <Button onClick={handleConfirmOrder} title={"Confirmar"}/>
             </div>
         </Modal>
     );

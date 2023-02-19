@@ -25,6 +25,7 @@ export function CardOrder({ order, index }: props) {
             </td>
             <td><TableItems title={order.hour ? order.hour.toString() : ""} />
             </td>
+            <td> <TableItems title={order.paymentMethod ? order.paymentMethod : "Não Encontrado"}/></td>
             <td> <TableItems title={formatCurrency(Number(order.total))} /></td>
         </tr>
     );

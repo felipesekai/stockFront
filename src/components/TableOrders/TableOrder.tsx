@@ -15,6 +15,7 @@ export const TableOrder = ({list}: TableOrderProps)=>{
                 <th>Qtd Produtos</th>
                 <th>Data</th>
                 <th>Hora</th>
+                <th>Metodo de Pagamento</th>
                 <th>Valor Total</th>
             </tr>
             </thead>

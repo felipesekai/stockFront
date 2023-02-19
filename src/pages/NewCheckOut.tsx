@@ -65,10 +65,7 @@ export function NewCheckOut() {
 
     const handleSubmitOrder = (e: FormEvent<HTMLButtonElement>) => {
         e.preventDefault()
-        const listTemp = [...listProductsSelected]
-        console.log(listTemp.length)
         if (listProductsSelected.length) {
-            console.log("entrou")
             setFormData({
                 ...formData,
                 products: listProductsSelected,
