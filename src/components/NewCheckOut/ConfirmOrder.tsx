@@ -6,6 +6,7 @@ import {Button} from "../Buttons/Button";
 import {registerNewOrder} from "../../service/OrderService";
 import {formatCurrency} from "../../utils/converter";
 import {Select} from "../Select";
+import {Input} from "../Input";
 
 interface props {
     order: Order,
@@ -17,7 +18,7 @@ export const ConfirmOrder = ({order, open, close}: props) => {
     const [listProducts, setListProducts] = useState<Products[]>([]);
     const [total, setTotal] = useState<number>(0);
     const [paymentMethod, setPaymentMethod] = useState<string | null>(null);
-
+    const [moneyChange, setMoneyChange] = useState<number>(0)
 
     useEffect(() => {
         if (
@@ -85,6 +86,13 @@ export const ConfirmOrder = ({order, open, close}: props) => {
         setPaymentMethod(e.target.value)
     },[setPaymentMethod])
 
+    const onChangeToReturn = useCallback((e : React.ChangeEvent<HTMLInputElement>)=>{
+        const newChange = Number(e.target.value) - total
+        setMoneyChange(newChange)
+    },[setMoneyChange, total])
+
+
+
     return (
         <Modal open={open} close={close} title={"Confirmar Pedido"}>
             <div className={'flex flex-col '}>
@@ -114,14 +122,22 @@ export const ConfirmOrder = ({order, open, close}: props) => {
                     </tbody>
                 </table>
 
-                <div className="flex justify-center mt-2">
+                <div className="flex flex-col gap-2 justify-center mt-2">
                     <Select onChange={handleSelectPaymentsMethod}></Select>
-
+                    {paymentMethod === "À vista" &&
+                        <Input type="number" step={0.01}  onChange={onChangeToReturn} placeholder="Valor Pago" />}
 
                 </div>
                 <h4 className={'flex text-md w-full justify-end px-4 py-2'}>
                     {"Total: " + formatCurrency(total)}
                 </h4>
+                {moneyChange > 0 && paymentMethod === "À vista" &&
+                    <h4 className={'flex text-md w-full justify-end px-4 py-2'}>
+                {"Troco: " + formatCurrency(Number(moneyChange))}
+                    </h4>
+                }
+
+
                 <Button onClick={handleConfirmOrder} title={"Confirmar"}/>
             </div>
         </Modal>
