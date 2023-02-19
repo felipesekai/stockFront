@@ -47,6 +47,7 @@ button {
   font-family: inherit;
   cursor: pointer;
   transition: border-color 0.25s;
+
 }
 
 
@@ -55,13 +56,17 @@ button:hover {
   border-color: #ADD8E6;
   box-shadow: inset -300px -300px 300px rgba(0, 0, 0, 0.10);
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
+/*button:focus,*/
+/*!*button:focus-visible {*!*/
+/*!*  outline: 4px auto -webkit-focus-ring-color;*!*/
+/*!*}*!*/
 
 #card-home {
   font-size: 2rem;
+  /*border-radius: 13px;*/
+  /*background: #1f982d;*/
+  box-shadow: inset 7px -7px 18px #00842c,
+  inset -7px 7px 18px #00ae3a;
 }
 
 #card-home:hover {
@@ -69,7 +74,15 @@ button:focus-visible {
   height: 160px;
   width: 280px;
 }
+#arrow-back{
+  box-shadow: inset 5px -5px 18px #00822b,
+  inset -5px 5px 18px #00b03b;
 
+}
+#b-default{
+  box-shadow: inset 5px -5px 18px #00822b,
+  inset -5px 5px 18px #00b03b;
+}
 
 /*@media (prefers-color-scheme: light) {*/
 /*  :root {*/

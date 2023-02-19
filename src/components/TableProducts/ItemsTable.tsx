@@ -8,7 +8,7 @@ interface Props extends HtmlHTMLAttributes<HTMLDivElement> {
     identify?: number
 }
 
-export function TableItems({ title, identify, ...rest }: Props) {
+export function ItemsTable({ title, identify, ...rest }: Props) {
     if (identify === undefined) {
         return (
             <div className='flex flex-1  items-center justify-center bg-orange-500 py-1 px-2'

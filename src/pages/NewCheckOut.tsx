@@ -63,8 +63,6 @@ export function NewCheckOut() {
         }
     }
 
-
-
     const handleSubmitOrder = (e: FormEvent<HTMLButtonElement>) => {
         e.preventDefault()
         const listTemp = [...listProductsSelected]
@@ -80,16 +78,15 @@ export function NewCheckOut() {
         }
     }
 
-    // useEffect(() => {
-    //     setFormData({
-    //         ...formData, total: calcTotal()
-    //     })
-    // }, [listProductsSelected])
+    const handleCloseModalOrder = () =>{
+        setOpen(false)
+        window.location.reload()
+    }
 
     return (
         <div className={'flex flex-col'}>
             {open &&
-                <ConfirmOrder order={formData} open={open} close={() => setOpen(false)} />
+                <ConfirmOrder order={formData} open={open} close={handleCloseModalOrder} />
 
             }
             {header}
@@ -106,6 +103,7 @@ export function NewCheckOut() {
             </div>
             <div className="flex gap-2 p-2 justify-center items-center">
                 <PickItens
+                    text={"Produtos em estoque"}
                     itemSelected={selectToAdd}
                     list={listedFilter}
                     search={(s) => setSearch({ ...search, stock: s })}
@@ -117,6 +115,7 @@ export function NewCheckOut() {
                         className={'pi pi-angle-left'}></i></ButtonArrow>
                 </div>
                 <PickItens
+                    text={"Produto(s) Selecionado(s)"}
                     list={selectedListedFilter}
                     search={(s) => setSearch({ ...search, selected: s })}
                     itemSelected={selectToRemove}
@@ -126,9 +125,9 @@ export function NewCheckOut() {
             </div>
             <p>{formData.total}</p>
             <button type={'submit'}
-
+                id="b-default"
                 onClick={handleSubmitOrder}
-                className={'bg-bgPrimary my-5 ml-auto mr-10 px-14 py-2 rounded shadow font-bold text-white'}>
+                className={'bg-bgPrimary my-5 ml-auto mr-10 px-14 py-2 rounded font-bold text-white'}>
                 Confirmar
             </button>
         </div>

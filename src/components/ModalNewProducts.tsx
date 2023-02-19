@@ -6,7 +6,7 @@ import {Products} from '../utils/@Types';
 import {formatarMoeda} from '../utils/converter';
 import {registerProduct} from "../service/ProductService";
 import {Input} from "./Input";
-import {Button} from "./Button";
+import {Button} from "./Buttons/Button";
 
 interface props {
     open: boolean;
@@ -73,7 +73,7 @@ export function ModalNewProducts({ open, close }: props) {
                         step="0.01"
                         className='border-2 rounded border-bgPrimary h-10' />
                 </div>
-                <Button type='submit' title={'Cadastrar'} />
+                <Button type='submit' style={{marginBottom: '0'}} title={'Cadastrar'} />
             </form>
 
 

@@ -2,7 +2,7 @@ import { Modal } from "../Modal";
 import React, { useEffect, useState } from "react";
 import { Order, Products } from "../../utils/@Types";
 import { TrProductsConfirm } from "./TrProductsConfirm";
-import { Button } from "../Button";
+import { Button } from "../Buttons/Button";
 import { registerNewOrder } from "../../service/OrderService";
 
 interface props {
@@ -61,12 +61,18 @@ export const ConfirmOrder = ({ order, open, close }: props) => {
         }
 
         registerNewOrder(newOrder).then(r => {
-            alert("Registro Cadastrado Com Sucesso!");
-            window.location.reload()
-        }).catch((error) => {
-            alert("Houve um erro ao Tentar Registrar uma nova Saida")
-            alert(error)
-            console.log(Error)
+            if(r.data.title){
+                alert(r.data.message);
+
+            }else{
+                alert("Registro Cadastrado Com Sucesso!");
+                window.location.reload()
+            }
+
+        }).catch((r) => {
+            // alert("Houve um erro ao Tentar Registrar uma nova Saida")
+            alert(r)
+            console.log(r)
         })
     }
 

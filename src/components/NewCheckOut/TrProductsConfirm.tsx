@@ -1,6 +1,6 @@
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, useEffect, useState} from 'react';
 import {Products} from "../../utils/@Types";
-import {TableItems} from "../TableProducts/TableItems";
+import {ItemsTable} from "../TableProducts/ItemsTable";
 import {formatCurrency} from "../../utils/converter";
 import {AlterColorRows} from "../../utils/AlterColorRows";
 
@@ -14,21 +14,22 @@ export function TrProductsConfirm({ product, index, onChangeSelect }: props) {
 
     const options = [
     ]
-
     for(let i = 1; i < 101; i++){
         options.push(i)
+
     }
     function onSelect(e: ChangeEvent<HTMLSelectElement>) {
         onChangeSelect(index, Number(e.target.value))
+
         // product.quantity = Number(e.target.value)
     }
 
     return (
         <tr  className='border-1 dark:border-bgPrimary' style={AlterColorRows(index)}
         >
-            <td><TableItems title={product.id} />
+            <td><ItemsTable title={product.id} />
             </td>
-            <td> <TableItems title={product.name} />
+            <td> <ItemsTable title={product.name} />
             </td>
             <td><select onChange={onSelect}>
                 {options.map((op=> {
@@ -37,7 +38,7 @@ export function TrProductsConfirm({ product, index, onChangeSelect }: props) {
                 <option>1</option>
             </select>
             </td>
-            <td> <TableItems title={formatCurrency(Number(product.price))} /></td>
+            <td> <ItemsTable title={formatCurrency(Number(product.price))} /></td>
         </tr>
     );
 }

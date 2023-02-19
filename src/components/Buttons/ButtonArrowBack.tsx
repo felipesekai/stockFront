@@ -6,7 +6,9 @@ interface props extends ButtonHTMLAttributes<HTMLButtonElement>{
 }
 export const ButtonArrowBack = ({...rest}: props)=>{
     return (
-        <button className="bg-bgPrimary
+        <button
+            id='arrow-back'
+            className="bg-bgPrimary
                     flex
                     gap-2
                     justify-center
@@ -16,7 +18,6 @@ export const ButtonArrowBack = ({...rest}: props)=>{
                     px-5
                     py-3
                     rounded
-                    shadow
                     font-bold"
                 {...rest}
         >

@@ -14,13 +14,13 @@ export function Home() {
             <div className='flex gap-2 p-2 h-[200px] items-center' >
                 <CardHome
                     onClick={() => to('/newcheckout')}
-                    iconName='pi pi-box' text='Registrar Saida' />
+                    iconName='pi pi-cart-plus' text='Registrar Saida' />
                 <CardHome
                     onClick={() => to('/products')}
                     iconName='pi pi-box' text='Ver Estoque' />
                 <CardHome
                     onClick={() => to('/orders')}
-                    iconName='pi pi-box' text='Ver Pedidos' />
+                    iconName='pi pi-book' text='Ver Pedidos' />
 
             </div>
             {/*</div>*/}

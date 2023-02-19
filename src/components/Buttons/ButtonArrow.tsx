@@ -7,7 +7,8 @@ export function ButtonArrow({ children, ...rest }: ButtonProps) {
         <button
             {...rest}
             className='   
-            p-4  rounded  
+            p-4  rounded
+            shadow-sm
           border-bgPrimary    
          hover:bg-bgPrimary
          hover:border-bgPrimary

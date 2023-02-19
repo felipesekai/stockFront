@@ -14,7 +14,7 @@ export function CardHome({ iconName, text, ...rest }: props) {
             className='bg-bgPrimary
              flex flex-col justify-center
               items-center w-[270px] h-[150px]
-               shadow-md
+
                text-white
                '
         >

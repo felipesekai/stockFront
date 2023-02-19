@@ -9,6 +9,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 export const Button = ({ title, children, ...rest }: ButtonProps) => {
     return <button
         {...rest}
+        id={"b-default"}
         className="bg-bgPrimary                  
                     flex
                     gap-2
@@ -21,7 +22,6 @@ export const Button = ({ title, children, ...rest }: ButtonProps) => {
                     px-5
                     py-3 
                     rounded
-                    shadow 
                     font-bold">
         {children}
         {title}
