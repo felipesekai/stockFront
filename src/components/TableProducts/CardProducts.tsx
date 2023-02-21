@@ -6,14 +6,15 @@ import {AlterColorRows} from "../../utils/AlterColorRows";
 
 interface props {
     product: Products,
-    index: number
+    index: number,
+    handlePressCard: ()=>void
 }
-export function CardProducts({ product, index }: props) {
+export function CardProducts({ product, index, handlePressCard }: props) {
 
 
-    function handlePressCard() {
-        window.alert("pressionou")
-    }
+    // function handlePressCard() {
+    //     window.alert("pressionou")
+    // }
     return (
         <tr onDoubleClick={handlePressCard} className='border-1 dark:border-bgPrimary' style={AlterColorRows(index)}
         >

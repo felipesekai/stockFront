@@ -4,10 +4,11 @@ import {Products} from "../../utils/@Types";
 
 interface Props {
     list: Products[];
+    handleEdit: (products:Products)=>void
 
 }
 
-export const TableProducts = ({list}: Props)=>{
+export const TableProducts = ({list, handleEdit}: Props)=>{
     const footer = `Total de Produtos: ${list ? list.length : 0}.`;
 
     return(
@@ -22,7 +23,7 @@ export const TableProducts = ({list}: Props)=>{
             </tr>
             </thead>
             <tbody>
-            {list.map((item, index) => <CardProducts key={index} product={item} index={index} />)}
+            {list.map((item, index) => <CardProducts handlePressCard={()=>handleEdit(item)} key={index} product={item} index={index} />)}
 
             </tbody>
             <tfoot>

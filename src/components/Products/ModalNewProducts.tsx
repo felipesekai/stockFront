@@ -1,12 +1,12 @@
-import React, {useCallback, useState} from 'react';
-import {Modal} from './Modal';
-import {Products} from '../utils/@Types';
+import React, { useCallback, useState } from 'react';
+import { Modal } from '../Modal';
+import { Products } from '../../utils/@Types';
 
 
-import {formatarMoeda} from '../utils/converter';
-import {registerProduct} from "../service/ProductService";
-import {Input} from "./Input";
-import {Button} from "./Buttons/Button";
+import { formatarMoeda } from '../../utils/converter';
+import { registerProduct } from "../../service/ProductService";
+import { Input } from "../Input";
+import { Button } from "../Buttons/Button";
 
 interface props {
     open: boolean;
@@ -31,7 +31,7 @@ export function ModalNewProducts({ open, close }: props) {
         event.preventDefault();
         let product = formData;
         product.price = product.price.toString().replace(',', '.')
-       registerProduct(product).then((response) => {
+        registerProduct(product).then((response) => {
             alert('Product saved successfully');
             window.location.reload()
         });
@@ -73,7 +73,7 @@ export function ModalNewProducts({ open, close }: props) {
                         step="0.01"
                         className='border-2 rounded border-bgPrimary h-10' />
                 </div>
-                <Button type='submit' style={{marginBottom: '0'}} title={'Cadastrar'} />
+                <Button type='submit' style={{ marginBottom: '0' }} title={'Cadastrar'} />
             </form>
 
 
