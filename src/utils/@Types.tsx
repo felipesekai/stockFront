@@ -17,17 +17,18 @@ export type Order = {
     products: Products[];
     date?: string;
     hour?: number;
-    paymentMethod?: string| null
+    paymentMethod?: string | null
 }
 export type OrderRequests = {
     id?: string;
     name: string;
     total: number;
-    product: any[];
+    product: ProductOrder[];
     date?: string;
     hour?: number;
-    paymentMethod?: string| null
+    paymentMethod?: string | null
 }
+export type ProductOrder = { productId: number, orderId: number, quantity: number }
 
 // export type Paymments = {
 //     id: number;

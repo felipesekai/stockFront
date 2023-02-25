@@ -1,29 +1,33 @@
 import React from "react";
-import { OrderRequests} from "../../utils/@Types";
-import {CardOrder} from "./CardOrder";
+import { OrderRequests } from "../../utils/@Types";
+import { CardOrder } from "./CardOrder";
+import "./table.css"
 
 interface TableOrderProps {
     list: OrderRequests[]
 }
-export const TableOrder = ({list}: TableOrderProps)=>{
-    return(
-        <table className="table-auto w-full">
-            <thead className='bg-bgPrimary w-full rounded font-bold mt-1 my-3 text-white'>
-            <tr className='rounded'>
-                <th>Código</th>
-                <th>Nome</th>
-                <th>Qtd Produtos</th>
-                <th>Data</th>
-                <th>Hora</th>
-                <th>Metodo de Pagamento</th>
-                <th>Valor Total</th>
-            </tr>
-            </thead>
-            <tbody>
-            {list.map((item, index) => <CardOrder key={index} order={item} index={index} />)}
+export const TableOrder = ({ list }: TableOrderProps) => {
 
-            </tbody>
+    return (
+        <>
+            <div className="table">
+                <div className='bg-bgPrimary text-white font-bold text flex justify-center items-center'>
+                    <div className="cell codigo">Código</div>
+                    <div className="cell nome">Cliente</div>
+                    <div className="cell qtd">Produtos</div>
+                    <div className="cell data">Data</div>
+                    <div className="cell hora">Hora</div>
+                    <div className="cell metodo">Metodo de Pagamento</div>
+                    <div className="cell valor">Valor Total</div>
 
-        </table>
+                </div>
+
+                {list.map((item, index) => <CardOrder key={index} order={item} index={index} />)}
+
+
+
+            </div>
+
+        </>
     );
 }

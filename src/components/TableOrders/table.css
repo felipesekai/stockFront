@@ -1,0 +1,49 @@
+.table {
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, sans-serif;
+}
+.row {
+  display: flex;
+}
+
+.cell {
+  padding: 10px;
+  flex-basis: 0;
+  flex-grow: 1;
+  text-align: center
+}
+
+.cell:last-child {
+  border-right: none;
+}
+
+.codigo {
+  flex-basis: 70px;
+}
+
+.nome {
+  flex-basis: 200px;
+}
+
+.qtd {
+  flex-basis: 100px;
+}
+
+.data {
+  flex-basis: 100px;
+}
+
+.hora {
+  flex-basis: 80px;
+}
+
+.metodo {
+  flex-basis: 100px;
+}
+
+.valor {
+  flex-basis: 100px;
+}
+
+

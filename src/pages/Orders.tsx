@@ -1,10 +1,10 @@
-import {getAllOrders} from "../service/OrderService";
-import {BHeaderPage} from "../components/BHeaderPage";
-import {TableOrder} from "../components/TableOrders/TableOrder";
-import {OrderRequests} from "../utils/@Types";
-import {useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
-import {ButtonArrowBack} from "../components/Buttons/ButtonArrowBack";
+import { getAllOrders } from "../service/OrderService";
+import { BHeaderPage } from "../components/BHeaderPage";
+import { TableOrder } from "../components/TableOrders/TableOrder";
+import { OrderRequests } from "../utils/@Types";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { ButtonArrowBack } from "../components/Buttons/ButtonArrowBack";
 
 export const Orders = () => {
 
@@ -12,7 +12,7 @@ export const Orders = () => {
 
     const navigate = useNavigate();
 
-    function goTo(){
+    function goTo() {
         navigate("/")
     }
 
@@ -26,10 +26,10 @@ export const Orders = () => {
     return (
         <div>
             <BHeaderPage>
-                <ButtonArrowBack  onClick={goTo}/>
+                <ButtonArrowBack onClick={goTo} />
                 Pedidos
             </BHeaderPage>
-            <TableOrder list={orders}/>
+            <TableOrder list={orders} />
         </div>
     )
 }
