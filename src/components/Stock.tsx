@@ -9,7 +9,7 @@ import { BHeaderPage } from "./BHeaderPage";
 import { ButtonArrowBack } from "./Buttons/ButtonArrowBack";
 import { useNavigate } from "react-router-dom";
 import { TableProducts } from "./TableProducts/TableProducts";
-import {ModalEditProducts} from "./Products/ModalEditProducts";
+import { ModalEditProducts } from "./Products/ModalEditProducts";
 
 export function Stock() {
     const [open, setOpen] = useState<boolean>(false);
@@ -40,19 +40,24 @@ export function Stock() {
         })
     }, [])
 
-    const handleEditProduct = (product: Products)=>{
-            setOpenEdit(true);
-            setProductSelect(product)
+    const handleEditProduct = (product: Products) => {
+        setOpenEdit(true);
+        setProductSelect(product)
+    }
+    const handleDeleteProduct = (product: Products) => {
+
+        setOpenEdit(true);
+        setProductSelect(product)
     }
     return (
         <div className="m-auto mt-2 ">
-            {open &&<ModalNewProducts open={open} close={() => setOpen(false)}/>}
-            {openEdit &&<ModalEditProducts open={openEdit}
-                                close={() => setOpenEdit(false)}
-                                product={productSelect}
+            {open && <ModalNewProducts open={open} close={() => setOpen(false)} />}
+            {openEdit && <ModalEditProducts open={openEdit}
+                close={() => setOpenEdit(false)}
+                product={productSelect}
             />}
             {header}
-            <TableProducts handleEdit={handleEditProduct} list={listProducts} />
+            <TableProducts handleEdit={handleEditProduct} handleDelete={handleDeleteProduct} list={listProducts} />
 
         </div>
     );

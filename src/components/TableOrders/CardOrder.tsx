@@ -3,11 +3,9 @@ import { OrderRequests, Products } from '../../utils/@Types';
 import { TableItems } from './TableItems';
 import { formatCurrency } from "../../utils/converter";
 import { AlterColorRows } from "../../utils/AlterColorRows";
-import { Button } from '../Buttons/Button';
-import { TableProducts } from '../TableProducts/TableProducts';
-import { getProductById, getProductOrder } from '../../service/ProductService';
-import { CSSTransition } from 'react-transition-group';
-import { TableProductsOder } from './TableProductsOder';
+import { getProductOrder } from '../../service/ProductService';
+import { TableProductsOrder } from './TableProducts/TableProductsOder';
+import {DivAnimated} from "./styled";
 
 
 // import { bgColor } from "../utils/Colors.tsx";
@@ -52,12 +50,15 @@ export function CardOrder({ order, index }: props) {
                 <div className="cell nome"> <TableItems title={order.name} />
                 </div>
                 <div className="cell qtd">
-                    <TableItems>
+                    <TableItems title={order.product.length.toString() + " "}>
                         {order.product.length > 0 &&
-                            <Button title='' onClick={openList}>
+                            <button
+
+                                className='bg-bgPrimary flex p-1 rounded-sm shadow text-white' onClick={openList}>
+
                                 <i className={open ? iconString.open : iconString.close}>
                                 </i>
-                            </Button>}
+                            </button>}
 
                     </TableItems>
 
@@ -73,8 +74,10 @@ export function CardOrder({ order, index }: props) {
                 <div className="cell valor"> <TableItems title={formatCurrency(Number(order.total))} /></div>
 
             </div>
-            {open && <TableProductsOder list={products} />
+
+            {open &&<TableProductsOrder list={products}/>
             }
+
 
         </>
     );

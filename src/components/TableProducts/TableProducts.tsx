@@ -4,7 +4,8 @@ import { CardProducts } from "./CardProducts";
 
 interface Props {
     list: Products[];
-    handleEdit: (products: Products) => void
+    handleEdit: (products: Products) => void,
+    handleDelete: (products: Products) => void,
 
 }
 
@@ -20,10 +21,14 @@ export const TableProducts = ({ list, handleEdit }: Props) => {
                     <th>Descrição</th>
                     <th>Estoque</th>
                     <th>Valor</th>
+                    <th>Editar/Excluir</th>
                 </tr>
             </thead>
             <tbody>
-                {list.map((item, index) => <CardProducts handlePressCard={() => handleEdit(item)} key={index} product={item} index={index} />)}
+                {list.map((item, index) => <CardProducts
+                    handleEdit={() => handleEdit(item)}
+                    handleDelete={() => handleEdit(item)}
+                    key={index} product={item} index={index} />)}
 
             </tbody>
             <tfoot>

@@ -8,10 +8,9 @@
 }
 
 .cell {
-  padding: 10px;
   flex-basis: 0;
   flex-grow: 1;
-  text-align: center
+  text-align: center;
 }
 
 .cell:last-child {
@@ -45,5 +44,32 @@
 .valor {
   flex-basis: 100px;
 }
+
+/*.loader {*/
+/*    width: 100%;*/
+/*    overflow: hidden;*/
+/*    height: 0;*/
+/*    box-sizing: border-box;*/
+/*    border: 1px solid #009933; !* Apenas para fins de demonstração *!*/
+/*    animation: load 2.5s forwards;*/
+/*}*/
+/*@keyframes load {*/
+/*    0% {*/
+/*        height: 0;*/
+/*    }*/
+/*    100% {*/
+/*        height: var(--altura);*/
+/*    }*/
+/*}*/
+
+/*@keyframes load {*/
+/*    0% {*/
+/*        height: 0;*/
+/*    }*/
+/*    100% {*/
+/*        height: ${altura};*/
+/*    }*/
+/*}*/
+
 
 

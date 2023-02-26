@@ -1,22 +1,19 @@
 import React from 'react';
-import {Products} from '../../utils/@Types';
-import {ItemsTable} from './ItemsTable';
-import {formatCurrency} from "../../utils/converter";
-import {AlterColorRows} from "../../utils/AlterColorRows";
+import { Products } from '../../utils/@Types';
+import { ItemsTable } from './ItemsTable';
+import { formatCurrency } from "../../utils/converter";
+import { AlterColorRows } from "../../utils/AlterColorRows";
 
 interface props {
     product: Products,
     index: number,
-    handlePressCard: ()=>void
+    handleEdit: () => void,
+    handleDelete: () => void
 }
-export function CardProducts({ product, index, handlePressCard }: props) {
+export function CardProducts({ product, index, handleEdit, handleDelete }: props) {
 
-
-    // function handlePressCard() {
-    //     window.alert("pressionou")
-    // }
     return (
-        <tr onDoubleClick={handlePressCard} className='border-1 dark:border-bgPrimary' style={AlterColorRows(index)}
+        <tr className='border-1 dark:border-bgPrimary' style={AlterColorRows(index)}
         >
             <td><ItemsTable title={product.id} />
             </td>
@@ -27,6 +24,17 @@ export function CardProducts({ product, index, handlePressCard }: props) {
             <td><ItemsTable title={product.quantity.toString()} />
             </td>
             <td> <ItemsTable title={formatCurrency(Number(product.price))} /></td>
+            <td> <ItemsTable>
+                <button className='bg-bgPrimary flex p-1 rounded-sm shadow text-white' onClick={handleEdit}>
+                    <i className="pi pi-pencil">
+                    </i>
+                </button>
+                <button className='bg-[red] flex p-1 rounded-sm shadow text-white' onClick={handleDelete}>
+                    <i className="pi pi-trash">
+                    </i>
+                </button>
+            </ItemsTable>
+            </td>
         </tr>
     );
 }
