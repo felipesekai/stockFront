@@ -83,6 +83,10 @@ button:hover {
   box-shadow: inset 5px -5px 18px #00822b,
   inset -5px 5px 18px #00b03b;
 }
+#b-dialog-red{
+  box-shadow: inset 5px -5px 18px #d90000,
+  inset -5px 5px 18px #ff0000;
+}
 
 /*@media (prefers-color-scheme: light) {*/
 /*  :root {*/

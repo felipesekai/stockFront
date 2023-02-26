@@ -9,7 +9,7 @@ interface Props {
 
 }
 
-export const TableProducts = ({ list, handleEdit }: Props) => {
+export const TableProducts = ({ list, handleEdit, handleDelete }: Props) => {
     const footer = `Total de Produtos: ${list ? list.length : 0}.`;
 
     return (
@@ -27,7 +27,7 @@ export const TableProducts = ({ list, handleEdit }: Props) => {
             <tbody>
                 {list.map((item, index) => <CardProducts
                     handleEdit={() => handleEdit(item)}
-                    handleDelete={() => handleEdit(item)}
+                    handleDelete={() => handleDelete(item)}
                     key={index} product={item} index={index} />)}
 
             </tbody>

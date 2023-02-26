@@ -16,3 +16,6 @@ export const getProductById = async (id: number) => {
 export const getProductOrder = async (id: number) => {
     return api.get('/product/order/' + id)
 }
+export const deleteProduct = async (id: number) => {
+    return api.delete('/product/delete/' + id)
+}

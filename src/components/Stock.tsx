@@ -1,19 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import { ModalNewProducts } from './Products/ModalNewProducts';
+import React, {useEffect, useState} from 'react';
+import {ModalNewProducts} from './Products/ModalNewProducts';
 import 'primeicons/primeicons.css';
-import { Products } from '../utils/@Types';
+import {Products} from '../utils/@Types';
 import '../css/table.css'
-import { getAllProducts } from "../service/ProductService";
-import { Button } from './Buttons/Button';
-import { BHeaderPage } from "./BHeaderPage";
-import { ButtonArrowBack } from "./Buttons/ButtonArrowBack";
-import { useNavigate } from "react-router-dom";
-import { TableProducts } from "./TableProducts/TableProducts";
-import { ModalEditProducts } from "./Products/ModalEditProducts";
+import {deleteProduct, getAllProducts} from "../service/ProductService";
+import {Button} from './Buttons/Button';
+import {BHeaderPage} from "./BHeaderPage";
+import {ButtonArrowBack} from "./Buttons/ButtonArrowBack";
+import {useNavigate} from "react-router-dom";
+import {TableProducts} from "./TableProducts/TableProducts";
+import {ModalEditProducts} from "./Products/ModalEditProducts";
+import {Modal} from "./Modal";
+import {ButtonFD} from "./Buttons/ButtonFooterDialog";
 
 export function Stock() {
     const [open, setOpen] = useState<boolean>(false);
     const [openEdit, setOpenEdit] = useState<boolean>(false);
+    const [openDialogDelete, setOpenDialogDelete] = useState<boolean>(false);
     const [productSelect, setProductSelect] = useState<Products>({} as Products);
     const [listProducts, setListProducts] = useState<Products[]>([]);
 
@@ -45,10 +48,35 @@ export function Stock() {
         setProductSelect(product)
     }
     const handleDeleteProduct = (product: Products) => {
-
-        setOpenEdit(true);
+        setOpenDialogDelete(true);
         setProductSelect(product)
     }
+
+    const handleConfirmDelete = ()=>{
+        deleteProduct(Number(productSelect.id)).then(response => {
+            const data = response.data
+            alert(data.message)
+            setProductSelect({} as Products)
+            setOpenDialogDelete(false)
+        })
+    }
+
+    const ModalDelete = (<Modal open={openDialogDelete} close={()=>setOpenDialogDelete(false)}
+                       title={"Deseja Realmente Deletar Esse Produto?"}>
+            <div className="flex flex-1 flex-col w-full gap-1 font-semibold">
+                <h2>Nome: {productSelect.name}</h2>
+                <h2>Descrição: {productSelect.description}</h2>
+                <h2>Quantidade: {productSelect.quantity}</h2>
+                <h2>valor: {productSelect.price}</h2>
+                <footer className={' flex justify-end'}>
+                    <ButtonFD onClick={handleConfirmDelete} id={"b-dialog-red"} style={{backgroundColor:"#ff0000"}} title={"Confirmar"}/>
+
+                </footer>
+            </div>
+
+        </Modal>)
+
+
     return (
         <div className="m-auto mt-2 ">
             {open && <ModalNewProducts open={open} close={() => setOpen(false)} />}
@@ -56,6 +84,8 @@ export function Stock() {
                 close={() => setOpenEdit(false)}
                 product={productSelect}
             />}
+            {openDialogDelete && ModalDelete}
+
             {header}
             <TableProducts handleEdit={handleEditProduct} handleDelete={handleDeleteProduct} list={listProducts} />
 
