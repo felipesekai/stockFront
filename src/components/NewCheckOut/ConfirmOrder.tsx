@@ -46,13 +46,9 @@ export const ConfirmOrder = ({ order, open, close }: props) => {
     }, [calcTotal, order.products]);
 
 
-
-
-
-
     useEffect(() => {
         setTotal(calcTotal())
-    }, [listProducts])
+    }, [calcTotal, listProducts])
 
     function onChangeSelect(index: number, qtd: number) {
         const itemTemp = [...listProducts]
