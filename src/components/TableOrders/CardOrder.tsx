@@ -5,7 +5,6 @@ import { formatCurrency } from "../../utils/converter";
 import { AlterColorRows } from "../../utils/AlterColorRows";
 import { getProductOrder } from '../../service/ProductService';
 import { TableProductsOrder } from './TableProducts/TableProductsOder';
-import {DivAnimated} from "./styled";
 
 
 // import { bgColor } from "../utils/Colors.tsx";
@@ -33,7 +32,7 @@ export function CardOrder({ order, index }: props) {
             setProducts([])
         }
 
-    }, [open])
+    }, [open, order.id])
 
     function openList() {
         setOpen(!open)
@@ -75,7 +74,7 @@ export function CardOrder({ order, index }: props) {
 
             </div>
 
-            {open &&<TableProductsOrder list={products}/>
+            {open && <TableProductsOrder list={products} />
             }
 
 

@@ -1,20 +1,20 @@
-import React, {ChangeEvent, useEffect, useState} from 'react';
-import {Products} from "../../utils/@Types";
-import {ItemsTable} from "../TableProducts/ItemsTable";
-import {formatCurrency} from "../../utils/converter";
-import {AlterColorRows} from "../../utils/AlterColorRows";
+import React, { ChangeEvent } from 'react';
+import { Products } from "../../utils/@Types";
+import { ItemsTable } from "../TableProducts/ItemsTable";
+import { formatCurrency } from "../../utils/converter";
+import { AlterColorRows } from "../../utils/AlterColorRows";
 
 
 interface props {
     product: Products,
     index: number,
-    onChangeSelect: (index: number, number: number)=>void
+    onChangeSelect: (index: number, number: number) => void
 }
 export function TrProductsConfirm({ product, index, onChangeSelect }: props) {
 
     const options = [
     ]
-    for(let i = 1; i < 101; i++){
+    for (let i = 1; i < 101; i++) {
         options.push(i)
 
     }
@@ -25,14 +25,14 @@ export function TrProductsConfirm({ product, index, onChangeSelect }: props) {
     }
 
     return (
-        <tr  className='border-1 dark:border-bgPrimary' style={AlterColorRows(index)}
+        <tr className='border-1 dark:border-bgPrimary' style={AlterColorRows(index)}
         >
             <td><ItemsTable title={product.id} />
             </td>
             <td> <ItemsTable title={product.name} />
             </td>
             <td><select onChange={onSelect}>
-                {options.map((op=> {
+                {options.map((op => {
                     return <option key={op}>{op}</option>
                 }))}
                 <option>1</option>

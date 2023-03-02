@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react';
 import { Modal } from '../Modal';
 import { Products } from '../../utils/@Types';
 import { formatarMoeda } from '../../utils/converter';
-import {editProduct, registerProduct} from "../../service/ProductService";
+import { editProduct } from "../../service/ProductService";
 import { Input } from "../Input";
 import { Button } from "../Buttons/Button";
 

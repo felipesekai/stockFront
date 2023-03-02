@@ -1,12 +1,12 @@
-import {Modal} from "../Modal";
-import React, {useCallback, useEffect, useState} from "react";
-import {Order, Products} from "../../utils/@Types";
-import {TrProductsConfirm} from "./TrProductsConfirm";
-import {Button} from "../Buttons/Button";
-import {registerNewOrder} from "../../service/OrderService";
-import {formatCurrency} from "../../utils/converter";
-import {Select} from "../Select";
-import {Input} from "../Input";
+import { Modal } from "../Modal";
+import React, { useCallback, useEffect, useState } from "react";
+import { Order, Products } from "../../utils/@Types";
+import { TrProductsConfirm } from "./TrProductsConfirm";
+import { Button } from "../Buttons/Button";
+import { registerNewOrder } from "../../service/OrderService";
+import { formatCurrency } from "../../utils/converter";
+import { Select } from "../Select";
+import { Input } from "../Input";
 
 interface props {
     order: Order,
@@ -14,7 +14,7 @@ interface props {
     close: () => void
 }
 
-export const ConfirmOrder = ({order, open, close}: props) => {
+export const ConfirmOrder = ({ order, open, close }: props) => {
     const [listProducts, setListProducts] = useState<Products[]>([]);
     const [total, setTotal] = useState<number>(0);
     const [paymentMethod, setPaymentMethod] = useState<string | null>(null);
@@ -35,7 +35,7 @@ export const ConfirmOrder = ({order, open, close}: props) => {
         } else {
             alert("Ocorreu um erro")
         }
-    }, []);
+    }, [calcTotal, order.products]);
 
 
     function calcTotal() {
@@ -82,14 +82,14 @@ export const ConfirmOrder = ({order, open, close}: props) => {
         })
     }
 
-    const handleSelectPaymentsMethod = useCallback((e : React.ChangeEvent<HTMLSelectElement>)=>{
+    const handleSelectPaymentsMethod = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
         setPaymentMethod(e.target.value)
-    },[setPaymentMethod])
+    }, [setPaymentMethod])
 
-    const onChangeToReturn = useCallback((e : React.ChangeEvent<HTMLInputElement>)=>{
+    const onChangeToReturn = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         const newChange = Number(e.target.value) - total
         setMoneyChange(newChange)
-    },[setMoneyChange, total])
+    }, [setMoneyChange, total])
 
 
 
@@ -104,20 +104,20 @@ export const ConfirmOrder = ({order, open, close}: props) => {
 
                 <table className="table-auto w-full">
                     <thead className='bg-bgPrimary w-full rounded font-bold mt-1 my-3 text-white'>
-                    <tr className='rounded'>
-                        <th>Código</th>
-                        <th>Nome</th>
-                        <th>Qtd</th>
-                        <th>Preço</th>
-                    </tr>
+                        <tr className='rounded'>
+                            <th>Código</th>
+                            <th>Nome</th>
+                            <th>Qtd</th>
+                            <th>Preço</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    {listProducts.map((item, index) => <TrProductsConfirm
-                        key={index}
-                        product={item}
-                        index={index}
-                        onChangeSelect={(index, qtd) => onChangeSelect(index, qtd)}
-                    />)}
+                        {listProducts.map((item, index) => <TrProductsConfirm
+                            key={index}
+                            product={item}
+                            index={index}
+                            onChangeSelect={(index, qtd) => onChangeSelect(index, qtd)}
+                        />)}
 
                     </tbody>
                 </table>
@@ -125,7 +125,7 @@ export const ConfirmOrder = ({order, open, close}: props) => {
                 <div className="flex flex-col gap-2 justify-center mt-2">
                     <Select onChange={handleSelectPaymentsMethod}></Select>
                     {paymentMethod === "À vista" &&
-                        <Input type="number" step={0.01}  onChange={onChangeToReturn} placeholder="Valor Pago" />}
+                        <Input type="number" step={0.01} onChange={onChangeToReturn} placeholder="Valor Pago" />}
 
                 </div>
                 <h4 className={'flex text-md w-full justify-end px-4 py-2'}>
@@ -133,12 +133,12 @@ export const ConfirmOrder = ({order, open, close}: props) => {
                 </h4>
                 {moneyChange > 0 && paymentMethod === "À vista" &&
                     <h4 className={'flex text-md w-full justify-end px-4 py-2'}>
-                {"Troco: " + formatCurrency(Number(moneyChange))}
+                        {"Troco: " + formatCurrency(Number(moneyChange))}
                     </h4>
                 }
 
 
-                <Button onClick={handleConfirmOrder} title={"Confirmar"}/>
+                <Button onClick={handleConfirmOrder} title={"Confirmar"} />
             </div>
         </Modal>
     );
