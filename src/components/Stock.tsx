@@ -56,12 +56,11 @@ export function Stock() {
         deleteProduct(Number(productSelect.id)).then(response => {
             const data = response.data
             alert(data.message)
-            setProductSelect({} as Products)
-            setOpenDialogDelete(false)
+            window.location.reload()
         })
     }
 
-    const ModalDelete = (<Modal open={openDialogDelete} close={()=>setOpenDialogDelete(false)}
+    const ModalDelete = (<Modal open={openDialogDelete} close={() => setOpenDialogDelete(false)}
                        title={"Deseja Realmente Deletar Esse Produto?"}>
             <div className="flex flex-1 flex-col w-full gap-1 font-semibold">
                 <h2>Nome: {productSelect.name}</h2>
@@ -69,12 +68,15 @@ export function Stock() {
                 <h2>Quantidade: {productSelect.quantity}</h2>
                 <h2>valor: {productSelect.price}</h2>
                 <footer className={' flex justify-end'}>
-                    <ButtonFD onClick={handleConfirmDelete} id={"b-dialog-red"} style={{backgroundColor:"#ff0000"}} title={"Confirmar"}/>
+                    <ButtonFD onClick={handleConfirmDelete} id={"b-dialog-red"} style={{backgroundColor: "#ff0000"}}
+                              title={"Confirmar"}/>
 
                 </footer>
             </div>
 
         </Modal>)
+
+
 
 
     return (
@@ -84,8 +86,7 @@ export function Stock() {
                 close={() => setOpenEdit(false)}
                 product={productSelect}
             />}
-            {openDialogDelete && ModalDelete}
-
+            {ModalDelete}
             {header}
             <TableProducts handleEdit={handleEditProduct} handleDelete={handleDeleteProduct} list={listProducts} />
 
