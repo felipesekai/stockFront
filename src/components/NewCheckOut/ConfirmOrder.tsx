@@ -20,6 +20,14 @@ export const ConfirmOrder = ({ order, open, close }: props) => {
     const [paymentMethod, setPaymentMethod] = useState<string | null>(null);
     const [moneyChange, setMoneyChange] = useState<number>(0)
 
+    const calcTotal = useCallback(() => {
+        let total = 0
+        listProducts.forEach((item) =>
+            total += Number(item.price.toString().replace(',', '.')) * item.quantity
+        )
+        return total;
+    }, [listProducts]);
+
     useEffect(() => {
         if (
             order.products !== undefined
@@ -38,13 +46,9 @@ export const ConfirmOrder = ({ order, open, close }: props) => {
     }, [calcTotal, order.products]);
 
 
-    function calcTotal() {
-        let total = 0
-        listProducts.forEach((item) =>
-            total += Number(item.price.toString().replace(',', '.')) * item.quantity
-        )
-        return total;
-    }
+
+
+
 
     useEffect(() => {
         setTotal(calcTotal())
