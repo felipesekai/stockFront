@@ -21,11 +21,11 @@ export const ConfirmOrder = ({ order, open, close }: props) => {
     const [moneyChange, setMoneyChange] = useState<number>(0)
 
     const calcTotal = useCallback(() => {
-        let total = 0
+        let _total = 0
         listProducts.forEach((item) =>
-            total += Number(item.price.toString().replace(',', '.')) * item.quantity
+            _total += Number(item.price.toString().replace(',', '.')) * item.quantity
         )
-        return total;
+        return _total;
     }, [listProducts]);
 
     useEffect(() => {
@@ -39,18 +39,20 @@ export const ConfirmOrder = ({ order, open, close }: props) => {
             })
 
             setListProducts(list)
-            setTotal(calcTotal())
+            setTotal(calcTotal)
         } else {
             alert("Ocorreu um erro")
         }
-    }, [calcTotal, order.products]);
+    }, []);
 
 
     useEffect(() => {
-        setTotal(calcTotal())
-    }, [calcTotal, listProducts])
+        setTotal(calcTotal)
+    }, [listProducts])
 
     function onChangeSelect(index: number, qtd: number) {
+        console.log("index: " + index);
+        console.log("qtd: " + qtd);
         const itemTemp = [...listProducts]
         itemTemp[index].quantity = qtd
         setListProducts(itemTemp)
